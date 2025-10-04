@@ -1,0 +1,21 @@
+{
+  "name": "realtime-protocols",
+  "version": "0.1.0",
+  "description": "Side-by-side demo of SSE, Long Polling, WebSockets and HTTP/3 (QUIC via WebTransport).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "bench": "node benchmark/bench.js",
+    "cert": "node scripts/gen-cert.js"
+  },
+  "dependencies": {
+    "@fails-components/webtransport": "^1.4.0",
+    "@fails-components/webtransport-transport-http3-quiche": "^1.6.3",
+    "express": "^4.22.2",
+    "ws": "^8.21.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
