@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Realtime Protocols — SSE · Long Polling · WebSocket · QUIC</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Realtime Protocols — head-to-head</h1>
+    <p class="subtitle">
+      Same data source, four transports. Each panel keeps a small log of the
+      messages it receives and a metric strip showing latency, bytes and
+      reconnects.
+    </p>
+    <div class="controls">
+      <button id="start-all">▶ start all</button>
+      <button id="stop-all">⏸ stop all</button>
+      <button id="reset">⟲ reset metrics</button>
+      <span id="status"></span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="panel" data-protocol="sse">
+      <h2>Server-Sent Events</h2>
+      <div class="meta">
+        <span>transport: <code>HTTP/1.1 stream</code></span>
+        <span>direction: <code>server → client</code></span>
+      </div>
+      <div class="metrics"></div>
+      <div class="log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" data-protocol="longpoll">
+      <h2>Long Polling</h2>
+      <div class="meta">
+        <span>transport: <code>HTTP/1.1 req/res</code></span>
+        <span>direction: <code>server → client (one shot per req)</code></span>
+      </div>
+      <div class="metrics"></div>
+      <div class="log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" data-protocol="ws">
+      <h2>WebSocket</h2>
+      <div class="meta">
+        <span>transport: <code>HTTP Upgrade → TCP frame</code></span>
+        <span>direction: <code>full duplex</code></span>
+      </div>
+      <div class="metrics"></div>
+      <div class="log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" data-protocol="webtransport">
+      <h2>WebTransport (QUIC / HTTP/3)</h2>
+      <div class="meta">
+        <span>transport: <code>UDP/QUIC stream</code></span>
+        <span>direction: <code>full duplex, multiplexed</code></span>
+      </div>
+      <div class="metrics"></div>
+      <div class="log" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Single Node.js process serves all four endpoints from the same
+      <code>ticker</code>. Read <a href="https://github.com/Nandobez/realtime-protocols">the source</a>.
+    </p>
+  </footer>
+
+  <script type="module" src="client/metrics.js"></script>
+  <script type="module" src="client/sse.js"></script>
+  <script type="module" src="client/longpoll.js"></script>
+  <script type="module" src="client/ws.js"></script>
+  <script type="module" src="client/webtransport.js"></script>
+  <script type="module" src="client/main.js"></script>
+</body>
+</html>
