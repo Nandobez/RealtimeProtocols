@@ -127,9 +127,3 @@ RealtimeProtocols/
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).
-
-## Credits
-
-Cert pinning via `serverCertificateHashes` thanks to the WebTransport WG.
-The QUIC sidecar uses [aioquic](https://github.com/aiortc/aioquic) by Jeremy
-Lainé.
